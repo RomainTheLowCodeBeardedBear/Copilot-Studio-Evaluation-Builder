@@ -2,14 +2,14 @@
 
 Build small, repeatable conversation tests for Microsoft Copilot Studio. Each set comes with an importable CSV, a Classification rubric ready to paste into Studio, and a reviewer sheet that explains what evidence makes each turn pass.
 
-[Download the v1.1.1 skill ZIP](https://github.com/RomainTheLowCodeBeardedBear/Copilot-Studio-Evaluation-Builder/raw/refs/heads/main/copilot-studio-evaluation-builder-v1.1.1.zip) · [Explore the worked example](skill/examples/equipment-desk)
+[Download the v1.1.1 skill ZIP](https://github.com/RomainTheLowCodeBeardedBear/Copilot-Studio-Evaluation-Builder/raw/refs/heads/main/downloads/copilot-studio-evaluation-builder.zip) · [Explore the guided example](skill/examples/service-operations)
 
 ## Choose your starting point
 
 | Goal | Start here |
 | --- | --- |
 | Install the builder in a design agent | Download the skill ZIP above, then add it under Build → Skills. |
-| Try a complete evaluation pack | [Download the guided pack](https://github.com/RomainTheLowCodeBeardedBear/Copilot-Studio-Evaluation-Builder/raw/refs/heads/main/service-operations-guided-evaluations-v1.1.1.zip). Extract it, add the fictional bulletin to the agent under test, then import one CSV at a time. |
+| Try a complete evaluation pack | [Download the guided pack](https://github.com/RomainTheLowCodeBeardedBear/Copilot-Studio-Evaluation-Builder/raw/refs/heads/main/downloads/example-evaluations.zip). Extract it, add the fictional bulletin to the agent under test, then import one CSV at a time. |
 | Draft your own conversations in Excel | [Editable workbook](skill/templates/conversations.xlsx) and [CSV starter](skill/templates/conversations.csv). Replace the sample rows and synchronize the reviewer and method sheets. |
 | Choose scoring methods and configure the run | [Studio methods and grading examples](skill/references/studio-methods.md) and [maker runbook](skill/references/maker-runbook.md). |
 | Inspect a complete example before importing | [Metrics, diagnosis and policy test sets](skill/examples/service-operations). Each includes Excel, CSV, setup and manual acceptance criteria. |
