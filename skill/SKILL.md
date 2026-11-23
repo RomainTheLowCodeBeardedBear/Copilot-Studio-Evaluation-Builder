@@ -5,6 +5,10 @@ description: Design or revise multi-turn conversation test sets for Microsoft Co
 
 # Build a conversation evaluation
 
+## Choose the work product
+
+For a new evaluation, read references/maker-runbook.md and references/studio-methods.md. For an existing CSV, validate the original first and identify whether a failure comes from grouping, agent behavior, evidence or grading. For a guided handoff, deliver a ZIP organized like examples/service-operations/. Use templates/conversations.xlsx for Excel authoring and scripts/export_conversations.py for export and validation when the host can run Python. With no workbook tooling, use the CSV template and explicitly identify the outputs actually produced.
+
 ## Establish the test contract
 
 Identify the agent under test, the decision or behavior at risk, the language, and the evidence for each expected outcome. Use the maker's current conversation import template. When it is unavailable, use the bundled example's three-column layout and state the assumption. Ask a focused question if the missing answer would change what counts as success. For a test with missing evidence, test the promised clarification or scope boundary, or mark the numerical expectation pending and keep that case out of the runnable set.
@@ -27,4 +31,4 @@ Return download links where supported, otherwise provide each filename and its c
 
 Parse the generated CSV and verify the exact header, grouping, order, field counts and limits. The example template permits up to 20 chats, six turns per chat and 1,000 characters per question. Resolve differences using the maker's current template. Match every runnable turn to evidence and a grading rule. Walk through one acceptable paraphrase and one plausible wrong answer; the rubric should distinguish them. Keep General quality separate from factual acceptance. When citation feedback conflicts with the transcript, inspect each reply and open the cited evidence before diagnosing the failure.
 
-Use the files under examples/equipment-desk/ as a worked example. For public examples, author an independent fictional source and derive the expected answers from it.
+Use examples/service-operations/ for a complete three-set handoff and the files under examples/equipment-desk/ as a worked example. For public examples, author an independent fictional source and derive the expected answers from it.
