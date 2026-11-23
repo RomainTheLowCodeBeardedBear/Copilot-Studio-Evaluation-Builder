@@ -13,6 +13,10 @@ For a new evaluation, read references/maker-runbook.md and references/studio-met
 
 Identify the agent under test, the decision or behavior at risk, the language, and the evidence for each expected outcome. Use the maker's current conversation import template. When it is unavailable, use the bundled example's three-column layout and state the assumption. Ask a focused question if the missing answer would change what counts as success. For a test with missing evidence, test the promised clarification or scope boundary, or mark the numerical expectation pending and keep that case out of the runnable set.
 
+## Required import format
+
+The import file has exactly three columns in this order: `conversationNumber`, `question`, `response`. Keep the third column even when its value is empty. One row represents one user turn. Give follow-ups the same conversation number and keep them in order. Put labels, methods, evidence and reviewer notes in separate files. Generate comma-delimited UTF-8 with BOM, double-quote every field, escape internal quotes by doubling them, and use CRLF row endings. This reproduces the serialization of a successfully imported conversation set. The XLSX is for authoring; export the CSV for Studio. If a fresh Studio template has a different header, stop and resolve the mismatch before delivering the file.
+
 ## Design a small set
 
 Start with the smallest set that can expose the target error. A useful starting point is two independent chats with an opening question and one meaningful follow-up each. Give each chat its own number. Make the follow-up retain context, change one dimension, correct an earlier assumption, or ask for information outside the available source. Write natural user turns that still make sense if the previous agent reply was imperfect. Avoid putting the expected answer in the question.

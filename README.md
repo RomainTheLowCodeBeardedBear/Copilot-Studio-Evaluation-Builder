@@ -2,14 +2,14 @@
 
 Build small, repeatable conversation tests for Microsoft Copilot Studio. Each set comes with an importable CSV, a Classification rubric ready to paste into Studio, and a reviewer sheet that explains what evidence makes each turn pass.
 
-[Download the v1.1 skill ZIP](https://github.com/RomainTheLowCodeBeardedBear/Copilot-Studio-Evaluation-Builder/raw/refs/heads/main/copilot-studio-evaluation-builder-v1.1.zip) · [Explore the worked example](skill/examples/equipment-desk)
+[Download the v1.1.1 skill ZIP](https://github.com/RomainTheLowCodeBeardedBear/Copilot-Studio-Evaluation-Builder/raw/refs/heads/main/copilot-studio-evaluation-builder-v1.1.1.zip) · [Explore the worked example](skill/examples/equipment-desk)
 
 ## Choose your starting point
 
 | Goal | Start here |
 | --- | --- |
 | Install the builder in a design agent | Download the skill ZIP above, then add it under Build → Skills. |
-| Try a complete evaluation pack | [Download the guided pack](https://github.com/RomainTheLowCodeBeardedBear/Copilot-Studio-Evaluation-Builder/raw/refs/heads/main/service-operations-guided-evaluations-v1.1.zip). Extract it, add the fictional bulletin to the agent under test, then import one CSV at a time. |
+| Try a complete evaluation pack | [Download the guided pack](https://github.com/RomainTheLowCodeBeardedBear/Copilot-Studio-Evaluation-Builder/raw/refs/heads/main/service-operations-guided-evaluations-v1.1.1.zip). Extract it, add the fictional bulletin to the agent under test, then import one CSV at a time. |
 | Draft your own conversations in Excel | [Editable workbook](skill/templates/conversations.xlsx) and [CSV starter](skill/templates/conversations.csv). Replace the sample rows and synchronize the reviewer and method sheets. |
 | Choose scoring methods and configure the run | [Studio methods and grading examples](skill/references/studio-methods.md) and [maker runbook](skill/references/maker-runbook.md). |
 | Inspect a complete example before importing | [Metrics, diagnosis and policy test sets](skill/examples/service-operations). Each includes Excel, CSV, setup and manual acceptance criteria. |
@@ -25,6 +25,12 @@ python skill/scripts/export_conversations.py my-set.csv
 ~~~
 
 The Excel workbook is an authoring aid. Studio receives the CSV. Configure the scoring methods after import. The bundled CSV layout follows the conversation template; check the template offered by your environment if the UI differs.
+
+## Conversation import contract
+
+The import file has exactly three columns in this order: `conversationNumber`, `question`, `response`. Keep the third column even when its value is empty. One row represents one user turn. Give follow-ups the same conversation number and keep them in order. Put labels, methods, evidence and reviewer notes in separate files. Generate comma-delimited UTF-8 with BOM, double-quote every field, escape internal quotes by doubling them, and use CRLF row endings. This reproduces the serialization of a successfully imported conversation set. The XLSX is for authoring; export the CSV for Studio. If a fresh Studio template has a different header, stop and resolve the mismatch before delivering the file.
+
+To check your Studio download as well, append `--template EvalConversationTemplate.csv` to the export command.
 
 ## Use the skill
 

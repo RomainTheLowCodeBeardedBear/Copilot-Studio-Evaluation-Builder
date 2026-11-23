@@ -39,7 +39,13 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("input", type=Path)
     parser.add_argument("output", nargs="?", type=Path, help="CSV destination; omit to validate only")
+    parser.add_argument("--template", type=Path, help="Check the header of the conversation CSV downloaded from Studio")
     args = parser.parse_args()
+    if args.template:
+        with args.template.open(encoding="utf-8-sig", newline="") as stream:
+            header = next((r for r in csv.reader(stream, strict=True) if r and not (len(r) == 1 and r[0].startswith("#"))), None)
+        if header != list(HEADER):
+            parser.error("Studio template header differs from the supported conversation schema. Check the evaluation type and the downloaded template before exporting.")
     if args.input.suffix.lower() == ".xlsx":
         from openpyxl import load_workbook
         book = load_workbook(args.input, read_only=True)
@@ -60,7 +66,7 @@ def main():
         if args.output.suffix.lower() != ".csv" or args.output.resolve() == args.input.resolve():
             raise ValueError("Choose a separate .csv destination")
         with args.output.open("w", encoding="utf-8-sig", newline="") as stream:
-            writer = csv.writer(stream)
+            writer = csv.writer(stream, delimiter=",", quoting=csv.QUOTE_ALL, lineterminator="\r\n")
             writer.writerow(HEADER)
             writer.writerows(output)
     print(f"{len(set(row[0] for row in output))} conversations, {len(output)} user turns")

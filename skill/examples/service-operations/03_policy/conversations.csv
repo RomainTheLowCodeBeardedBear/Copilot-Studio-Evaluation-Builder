@@ -1,5 +1,5 @@
-﻿conversationNumber,question,response
-1,How long is the pickup window now?,Three working days.
-1,And under the earlier bulletin?,Five working days.
-2,I missed the pickup window. What happens next?,The desk reviews the request.
-2,Does the same deadline apply to reserve-list offers?,The reserve-list deadline is unpublished.
+﻿"conversationNumber","question","response"
+"1","How long is the pickup window now?","Three working days."
+"1","And under the earlier bulletin?","Five working days."
+"2","I missed the pickup window. What happens next?","The desk reviews the request."
+"2","Does the same deadline apply to reserve-list offers?","The reserve-list deadline is unpublished."

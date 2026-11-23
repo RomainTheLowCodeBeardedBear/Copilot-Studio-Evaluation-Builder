@@ -1,5 +1,5 @@
-﻿conversationNumber,question,response
-1,The missed appointment rate rose in quarter 2. What should we do?,Check the premise. The rate fell from 10 percent to 8 percent. Investigate counts and workload before changing policy.
-1,Then why did we miss more appointments?,The number scheduled rose from 100 to 150. The missed count rose from 10 to 12 while the rate fell.
-2,Do our records prove reminders reduced missed visits?,No reminder pilot is recorded.
-2,How would you check whether to adopt them?,Pilot reminders with a comparable group and compare missed appointments per scheduled visit.
+﻿"conversationNumber","question","response"
+"1","The missed appointment rate rose in quarter 2. What should we do?","Check the premise. The rate fell from 10 percent to 8 percent. Investigate counts and workload before changing policy."
+"1","Then why did we miss more appointments?","The number scheduled rose from 100 to 150. The missed count rose from 10 to 12 while the rate fell."
+"2","Do our records prove reminders reduced missed visits?","No reminder pilot is recorded."
+"2","How would you check whether to adopt them?","Pilot reminders with a comparable group and compare missed appointments per scheduled visit."
