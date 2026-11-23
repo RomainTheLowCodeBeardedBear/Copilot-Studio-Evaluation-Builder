@@ -1,13 +1,13 @@
 ---
 name: copilot-studio-evaluation-builder
-description: Design or revise multi-turn conversation test sets for Microsoft Copilot Studio. Generate importable conversation CSV files, complete Classification settings, and turn-by-turn acceptance checks from a maker's use case and evidence.
+description: Design or revise multi-turn conversation test sets for Microsoft Copilot Studio. Generate populated Excel workbooks, importable conversation CSV files, complete Classification settings, and turn-by-turn acceptance checks from a maker's use case and evidence.
 ---
 
 # Build a conversation evaluation
 
 ## Choose the work product
 
-For a new evaluation, read references/maker-runbook.md and references/studio-methods.md. For an existing CSV, validate the original first and identify whether a failure comes from grouping, agent behavior, evidence or grading. For a guided handoff, deliver a ZIP organized like examples/service-operations/. Use templates/conversations.xlsx for Excel authoring and scripts/export_conversations.py for export and validation when the host can run Python. With no workbook tooling, use the CSV template and explicitly identify the outputs actually produced.
+Generate a finished pack from the agent brief and evidence. The builder writes the conversations, expected outcomes and grading criteria, populates the workbook, exports the import CSV and prepares the Studio settings for each set. Use the maker's language throughout. Templates and code are internal production aids. Ask the maker only for missing facts that affect the verdict. Read references/maker-runbook.md and references/studio-methods.md when building.
 
 ## Establish the test contract
 
@@ -23,13 +23,15 @@ Start with the smallest set that can expose the target error. A useful starting 
 
 Group conversations under one rubric only when their outcomes can be described unambiguously. Split sets by independently useful reruns. State conversations, user turns and the smallest rerun after a change. Estimate credits only when the maker provides a valid rate.
 
-## Produce three files per runnable set
+## Produce four completed files per runnable set
 
 1. **conversations.csv**. Follow the supplied header, delimiter, encoding and current template limits. In the bundled layout use conversationNumber, question, response. Write one row per user turn, keep rows of each chat together and in order, and leave response empty when an example reply serves no purpose. Quote CSV fields correctly. Keep reviewer instructions out of the prompts. The optional reference reply is not an automatic correctness check.
-2. **classification.md**. Supply the method name, full evaluation instructions and two labels. For each label provide its name, criteria and Pass or Fail designation. Use short ASCII label names such as MeetsCriteria and NeedsReview. Make criteria independently usable in Studio: embed the expected facts, accepted variants, tolerances and critical errors for each applicable scenario. Identify conversations by their topic or opening turn. Ask for one overall label for the current conversation based only on the agent's replies, using user turns for context. Never require an answer to a different conversation to earn a pass.
+2. **setup.md**. Write the set-specific import and configuration guide. Include the evaluation name, CSV filename, expected chat and turn counts, selected methods and reasons, profile prerequisites and the save/run steps. For each selected method give the exact fields to enter. For Classification supply the method name, full evaluation instructions and two labels. For each label provide its name, criteria and Pass or Fail designation. Use short ASCII label names such as MeetsCriteria and NeedsReview. Make criteria independently usable in Studio: embed the expected facts, accepted variants, tolerances and critical errors for each applicable scenario. Identify conversations by their topic or opening turn. Ask for one overall label for the current conversation based only on the agent's replies, using user turns for context. Never require an answer to a different conversation to earn a pass.
 3. **review.md**. For each turn give the expected behavior, evidence locator, and an example of a material failure. Give the setup needed to reproduce the run, including any source version or role that affects the result. Record which evidence should be refreshed after a source change.
 
-Return download links where supported, otherwise provide each filename and its complete contents. Use the maker's language for all three files unless asked otherwise.
+4. **authoring.xlsx**. Fill Conversations, Reviewer and Method from the same scenario data used for the CSV and setup guide. Remove every starter row. Verify the workbook exports back to the delivered CSV byte for byte.
+
+In a file-capable host, generate actual files and return the ZIP. With Python and openpyxl, prepare a temporary JSON specification yourself and run scripts/build_set.py SPEC OUTPUT.zip for each set. The specification has three keys: conversations (a list of chats, each a list of turns with question, optional response, accept, evidence and fail), setup (localized Studio instructions including the set name and counts), and settings (an ordered mapping of Studio field labels to their finished text values). Include label designations and scenario-specific criteria. Deliver one folder per set in a combined ZIP when several sets are requested. Keep the temporary specification out of the deliverable. Other file-generation tools may implement the same output contract. If the host cannot create attachments, disclose which files could not be produced and provide the usable text outputs.
 
 ## Check before delivery
 
